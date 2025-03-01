@@ -1,0 +1,71 @@
+.top-cc-container, .top-ce-container {
+    margin: 10px auto;
+    width: 270px;
+    padding: 0;
+}
+
+.top-cl-container {
+    margin: 10px auto;
+    width: 290px;
+    padding: 0;
+}
+
+.list-currency-tbl .currency-name, .create-currency-tbl th, .edit-currency-tbl .currency-name{
+    height: 30px;
+    line-height: 30px;
+    margin: 0 0 5px 0 ;
+    /*margin-bottom: 10px;*/
+}
+
+.list-currency-tbl .currency-name {
+    width: 215px;
+}
+
+.create-currency-tbl th, .edit-currency-tbl th, .margin-tbl th {
+    width: 55px;
+}
+
+.require .non-require {
+    text-align: center;
+    width: 20px;
+}
+
+.require, .info {
+    color: red;
+}
+
+.margin-tbl .info {
+    text-align: right;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    min-width: 270px;
+    max-width: 270px;
+}
+
+.footer-cc-btn .footer-ce-btn {
+    width: 270px;
+    min-width: 270px;
+    max-width: 270px;
+}
+
+.footer-cc-btn > button, .footer-ce-btn > button {
+    width: 100%;
+}
+
+.footer-cl-btn {
+    width: 285px;
+    min-width: 285px;
+    max-width: 285px;
+}
+
+.footer-cl-btn > button {
+    width: 100%;
+}
+
+.to-currency-list {
+    width: 100%;
+}
+
+.to-add-currency {
+    width: 100%;
+}

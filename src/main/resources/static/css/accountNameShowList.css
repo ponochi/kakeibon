@@ -1,0 +1,17 @@
+.top-ass-container, .top-ads-container {
+    margin: 10px auto;
+    width: 300px;
+    padding: 0;
+}
+
+.account-src-tbl, .account-dest-tbl {
+    height: 30px;
+    line-height: 30px;
+    width: 296px;
+    margin: 0 0 5px 0 ;
+    padding: 0;
+}
+
+.account-src-button, .account-dest-button {
+    width: 296px;
+}

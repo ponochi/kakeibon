@@ -1,0 +1,17 @@
+.top-ss-container {
+    margin: 10px auto;
+    width: 300px;
+    padding: 0;
+}
+
+.shop-tbl {
+    height: 30px;
+    line-height: 30px;
+    width: 296px;
+    margin: 0 0 5px 0 ;
+    padding: 0;
+}
+
+.to-search-shop-button {
+    width: 296px;
+}

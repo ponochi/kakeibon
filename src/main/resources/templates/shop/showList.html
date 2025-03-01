@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="UTF-8">
+  <title>店舗検索</title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" rel="stylesheet">
+  <link href="/css/shopShowList.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid top-ss-container">
+  <h3>店舗検索</h3>
+
+  <input id="receivingAndPaymentDate" name="receivingAndPaymentDate"
+         th:value="${specificationGroupForm.receivingAndPaymentDate}" type="hidden">
+  <input id="receivingAndPaymentTime" name="receivingAndPaymentTime"
+         th:value="${specificationGroupForm.receivingAndPaymentTime}" type="hidden">
+
+  <table class="shop-tbl">
+    <tr th:each="shop : ${shops}">
+      <td>
+        <th:block th:if="${shop.shopId ne null}">
+          <th:block th:if="${accountSourceId ne null}">
+            <th:block th:if="${accountDestinationId eq null}">
+              <form th:object="${specificationGroupForm}"
+                    th:action="@{
+                              '/__${specificationGroupId}__' +
+                              '/__${userId}__' +
+                              '/__${accountAndBalanceId}__' +
+                              '/__${shop.shopId}__' +
+                              '/__${balanceType.balanceTypeId}__' +
+                              '/__${accountSourceId}__' +
+                              '/1' +
+                              '/setShop'}"
+                    method="GET">
+                <label for="shopId"></label>
+                <input id="shopId"
+                       th:value="${shop.shopId}"
+                       type="hidden">
+                <th:block th:if="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__ (__${shop.branchName}__)'"
+                         type="submit"/>
+                </th:block>
+                <th:block th:unless="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__'"
+                         type="submit"/>
+                </th:block>
+              </form>
+            </th:block>
+            <th:block th:unless="${accountDestinationId eq null}">
+              <form th:object="${specificationGroupForm}"
+                    th:action="@{
+                              '/__${specificationGroupId}__' +
+                              '/__${userId}__' +
+                              '/__${accountAndBalanceId}__' +
+                              '/__${shop.shopId}__' +
+                              '/__${balanceTypeForm.balanceTypeId}__' +
+                              '/__${accountSourceId}__' +
+                              '/__${accountDestinationId}__' +
+                              '/setShop'}"
+                    method="GET">
+                <label for="shopId"></label>
+                <input id="shopId"
+                       th:value="${shop.shopId}"
+                       type="hidden">
+                <th:block th:if="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__ (__${shop.branchName}__)'"
+                         type="submit"/>
+                </th:block>
+                <th:block th:unless="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__'"
+                         type="submit"/>
+                </th:block>
+              </form>
+            </th:block>
+          </th:block>
+          <th:block th:unless="${accountSourceId ne null}">
+            <th:block th:if="${accountDestinationId ne null}">
+              <form th:object="${specificationGroupForm}"
+                    th:action="@{
+                              '/__${specificationGroupId}__' +
+                              '/__${userId}__' +
+                              '/__${accountAndBalanceId}__' +
+                              '/__${shop.shopId}__' +
+                              '/__${balanceTypeForm.balanceTypeId}__' +
+                              '/1' +
+                              '/__${accountDestinationId}__' +
+                              '/setShop'}"
+                    method="GET">
+                <label for="shopId"></label>
+                <input id="shopId"
+                       th:value="${shop.shopId}"
+                       type="hidden">
+                <th:block th:if="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__ (__${shop.branchName}__)'"
+                         type="submit"/>
+                </th:block>
+                <th:block th:unless="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__'"
+                         type="submit"/>
+                </th:block>
+              </form>
+            </th:block>
+            <th:block th:unless="${accountDestinationId ne null}">
+              <form th:object="${specificationGroupForm}"
+                    th:action="@{
+                              '/__${specificationGroupId}__' +
+                              '/__${userId}__' +
+                              '/__${accountAndBalanceId}__' +
+                              '/__${shop.shopId}__' +
+                              '/__${balanceTypeForm.balanceTypeId}__' +
+                              '/1' +
+                              '/1' +
+                              '/setShop'}"
+                    method="GET">
+                <label for="shopId"></label>
+                <input id="shopId"
+                       th:value="${shop.shopId}"
+                       type="hidden">
+                <th:block th:if="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__ (__${shop.branchName}__)'"
+                         type="submit"/>
+                </th:block>
+                <th:block th:unless="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__'"
+                         type="submit"/>
+                </th:block>
+              </form>
+            </th:block>
+          </th:block>
+        </th:block>
+        <th:block th:unless="${shop.shopId ne null}">
+          <th:block th:if="${accountSourceId ne null}">
+            <th:block th:if="${accountDestinationId eq null}">
+              <form th:object="${specificationGroupForm}"
+                    th:action="@{
+                              '/__${specificationGroupId}__' +
+                              '/__${userId}__' +
+                              '/__${accountAndBalanceId}__' +
+                              '/1' +
+                              '/__${balanceTypeForm.balanceTypeId}__' +
+                              '/__${accountSourceId}__' +
+                              '/1' +
+                              '/setShop'}"
+                    method="GET">
+                <label for="shopId"></label>
+                <input id="shopId"
+                       th:value="${shop.shopId}"
+                       type="hidden">
+                <th:block th:if="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__ (__${shop.branchName}__)'"
+                         type="submit"/>
+                </th:block>
+                <th:block th:unless="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__'"
+                         type="submit"/>
+                </th:block>
+              </form>
+            </th:block>
+            <th:block th:unless="${accountDestinationId eq null}">
+              <form th:object="${specificationGroupForm}"
+                    th:action="@{
+                              '/__${specificationGroupId}__' +
+                              '/__${userId}__' +
+                              '/__${accountAndBalanceId}__' +
+                              '/1' +
+                              '/__${balanceTypeForm.balanceTypeId}__' +
+                              '/__${accountSourceId}__' +
+                              '/__${accountDestinationId}__' +
+                              '/setShop'}"
+                    method="GET">
+                <label for="shopId"></label>
+                <input id="shopId"
+                       th:value="${shop.shopId}"
+                       type="hidden">
+                <th:block th:if="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__ (__${shop.branchName}__)'"
+                         type="submit"/>
+                </th:block>
+                <th:block th:unless="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__'"
+                         type="submit"/>
+                </th:block>
+              </form>
+            </th:block>
+          </th:block>
+          <th:block th:unless="${accountSourceId ne null}">
+            <th:block th:if="${accountDestinationId ne null}">
+              <form th:object="${specificationGroupForm}"
+                    th:action="@{
+                              '/__${specificationGroupId}__' +
+                              '/__${userId}__' +
+                              '/__${accountAndBalanceId}__' +
+                              '/1' +
+                              '/__${balanceTypeForm.balanceTypeId}__' +
+                              '/1' +
+                              '/__${accountDestinationId}__' +
+                              '/setShop'}"
+                    method="GET">
+                <label for="shopId"></label>
+                <input id="shopId"
+                       th:value="${shop.shopId}"
+                       type="hidden">
+                <th:block th:if="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__ (__${shop.branchName}__)'"
+                         type="submit"/>
+                </th:block>
+                <th:block th:unless="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__'"
+                         type="submit"/>
+                </th:block>
+              </form>
+            </th:block>
+            <th:block th:unless="${accountDestinationId ne null}">
+              <form th:object="${specificationGroupForm}"
+                    th:action="@{
+                              '/__${specificationGroupId}__' +
+                              '/__${userId}__' +
+                              '/__${accountAndBalanceId}__' +
+                              '/1' +
+                              '/__${balanceTypeForm.balanceTypeId}__' +
+                              '/1' +
+                              '/1' +
+                              '/setShop'}"
+                    method="GET">
+                <label for="shopId"></label>
+                <input id="shopId"
+                       th:value="${shop.shopId}"
+                       type="hidden">
+                <th:block th:if="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__ (__${shop.branchName}__)'"
+                         type="submit"/>
+                </th:block>
+                <th:block th:unless="${#strings.length('__${shop.branchName}__') > 0}">
+                  <input class="to-search-shop-button"
+                         th:value="'__${shop.shopName}__'"
+                         type="submit"/>
+                </th:block>
+              </form>
+            </th:block>
+          </th:block>
+        </th:block>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

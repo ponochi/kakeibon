@@ -1,0 +1,7 @@
+.error-msg {
+    color: red;
+}
+
+.to-top-menu, .do-commit, .do-cancel {
+    width: 100%;
+}

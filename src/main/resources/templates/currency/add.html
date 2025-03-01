@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="jp"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="通貨登録"></title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/currency.css" rel="stylesheet">
+    <script src="/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container-fluid top-cc-container">
+    <h3>通貨登録</h3>
+    <p class="error-msg" th:if="${message} != null" th:text="${message}"></p>
+    <form id="commit" th:action="@{'/currency/confirm'}"
+          th:object="${currencyList}" method="POST">
+        <table class="create-currency-tbl">
+            <tr>
+                <th><label for="currencyName">通貨名</label></th>
+                <td class="require">*</td>
+                <td>
+                    <input id="currencyName" name="currencyName"
+                           th:value="*{currencyName}" th:errorclass="error-msg" type="text"/>
+                    <span th:errorclass="error-msg" style="color:red"
+                          th:if="${#fields.hasErrors('currencyName')}"
+                          th:errors="*{currencyName}">
+          </span>
+                </td>
+            </tr>
+        </table>
+        <table class="margin-tbl">
+            <tr>
+                <td class="info">
+                    <span>*) 必須項目</span>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form id="list" method="GET" th:action="@{'/currency'}" th:object="${currencyListForm}">
+    </form>
+    <div class="footer-cc-btn">
+        <div id="commitButton"></div>
+        <div id="cancelButton"></div>
+        <div id="toCurrencyListButton"></div>
+        <div id="toTopMenuButton"></div>
+    </div>
+</div>
+
+<script th:src="@{/js/common/commitButton.js}"></script>
+<script th:src="@{/js/common/cancelButton.js}"></script>
+<script th:src="@{/js/common/toCurrencyListButton.js}"></script>
+<script th:src="@{/js/common/toTopMenuButton.js}"></script>
+
+<script src="/js/currencyList.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+.top-sgc-container {
+    margin: 10px auto;
+    width: 710px;
+    padding: 0;
+}
+
+.top-sge-container {
+    margin: 10px auto;
+    width: 710px;
+    padding: 0;
+}
+
+.create-spec-grp-tbl, .edit-spec-grp-tbl {
+    height: 30px;
+    line-height: 30px;
+    width: 410px;
+    margin: 0 0 5px 0 ;
+    padding: 0;
+}
+
+.hdr-sg-rcv-and-payment-dt > label, .hdr-sg-shop > label, .hdr-sg-balance-type > label, .hdr-sg-account-src-name > label, .hdr-sg-account-dest-name > label, .hdr-sg-total-amount > label, .hdr-sg-grp-memo > label {
+    width: 90px;
+}
+
+/*.sg-rcv-and-payment-date {*/
+/*    margin-left: 4px;*/
+/*}*/
+
+.sge-shop {
+    margin-left: 0;
+}
+
+.sg-rcv-and-payment-time {
+    width: 100px;
+}
+
+.sgc-shop, .sge-shop, .sg-account-src-name, .sg-account-dest-name {
+    width: 240px;
+}
+
+.footer-btn {
+    width: 730px;
+    min-width: 730px;
+    max-width: 730px;
+}
+
+.footer-btn > button {
+    margin: 0;
+    width: 100%;
+}

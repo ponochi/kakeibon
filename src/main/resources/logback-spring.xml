@@ -1,0 +1,67 @@
+<!DOCTYPE logback>
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> <!-- (1) -->
+        <encoder>
+            <pattern><![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tthread:%thread\tX-Track:%X{X-Track}\tlevel:%-5level\tlogger:%-48logger{48}\tmessage:%msg%n]]></pattern> <!-- (2) -->
+        </encoder>
+    </appender>
+
+    <appender name="APPLICATION_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> <!-- (3) -->
+        <file>log/kakeibon-application.log</file> <!-- (4) -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log/projectName-application-%d{yyyyMMddHH}.log</fileNamePattern> <!-- (5) -->
+            <maxHistory>7</maxHistory> <!-- (6) -->
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset> <!-- (7) -->
+            <pattern><![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tthread:%thread\tX-Track:%X{X-Track}\tlevel:%-5level\tlogger:%-48logger{48}\tmessage:%msg%n]]></pattern>
+        </encoder>
+    </appender>
+
+    <appender name="MONITORING_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> <!-- (8) -->
+        <file>log/kakeibon-monitoring.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log/projectName-monitoring-%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern><![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tX-Track:%X{X-Track}\tlevel:%-5level\tmessage:%msg%n]]></pattern>
+        </encoder>
+    </appender>
+
+    <!-- Application Loggers -->
+    <logger name="org.panda.systems.kakeibon"> <!-- (9) -->
+        <level value="debug" />
+    </logger>
+
+    <!-- TERASOLUNA -->
+    <logger name="org.terasoluna.gfw">
+        <level value="info" />
+    </logger>
+    <logger name="org.terasoluna.gfw.web.logging.TraceLoggingInterceptor">
+        <level value="trace" />
+    </logger>
+    <logger name="org.terasoluna.gfw.common.exception.ExceptionLogger">
+        <level value="info" />
+    </logger>
+    <logger name="org.terasoluna.gfw.common.exception.ExceptionLogger.Monitoring" additivity="false"><!-- (10) -->
+        <level value="error" />
+        <appender-ref ref="MONITORING_LOG_FILE" />
+    </logger>
+
+    <!-- 3rdparty Loggers -->
+    <logger name="org.springframework">
+        <level value="warn" />
+    </logger>
+
+    <logger name="org.springframework.web.servlet">
+        <level value="info" />
+    </logger>
+
+    <root> <!-- (11) -->
+        <appender-ref ref="STDOUT" /> <!-- (12) -->
+        <appender-ref ref="APPLICATION_LOG_FILE" />
+    </root>
+</configuration>

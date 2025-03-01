@@ -1,0 +1,104 @@
+.top-sl-container {
+    margin: 10px auto;
+    width: 660px;
+    padding: 0;
+}
+
+.list-spec-detail-tbl {
+    height: 30px;
+    line-height: 30px;
+    width: 656px;
+    margin: 0 0 5px 0 ;
+    padding: 0;
+}
+
+.hdr {
+    text-align: center;
+    border: 1px solid #aaaaaa;
+    background-color: #d0d0ff;
+    margin-top: 1px;
+}
+
+.to-spec-list {
+    width: 100%;
+}
+
+.hdr-balance-type, .balance-type {
+    width: 90px;
+    margin: 0;
+}
+
+.hdr-rcv-and-payment-date, .rcv-and-payment-date {
+    width: 110px;
+    margin: 0;
+}
+
+.hdr-rcv-and-payment-time {
+    width: 90px;
+    margin: 0;
+}
+
+.rcv-and-payment-time {
+    width: 88px;
+    margin: 0;
+}
+
+.hdr-shop {
+    width: 282px;
+    margin: 0;
+}
+
+.shop {
+    width: 280px;
+    margin: 0;
+}
+
+.hdr-account-src-name, .hdr-account-dest-name {
+    width: 290px;
+    margin: 0;
+}
+
+.account-src-name, .account-dest-name {
+    width: 288px;
+    margin: 0;
+}
+
+.hdr-grp-memo {
+    width: 583px;
+}
+
+.grp-memo {
+    width: 580px;
+}
+
+.delete-spec-group-button, .to-edit-spec-group-button {
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+    text-align: center;
+    width: 30px;
+    height: 105px;
+    line-height: 8px;
+    margin: 5px 0 0 0;
+}
+
+.strong-hr {
+    border: 2px solid #000000;
+}
+
+hr {
+    border: 2px solid #888888;
+}
+
+.invisible-hr {
+    border: 0 solid #ffffff;
+}
+
+.header-btn {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.header-btn > button {
+    width: 100%;
+}

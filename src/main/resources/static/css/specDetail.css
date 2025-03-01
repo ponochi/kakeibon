@@ -1,0 +1,211 @@
+.top-sdc-container, .top-sde-container {
+    margin: 10px auto;
+    width: 394px;
+    padding: 0;
+}
+
+.create-spec-detail-tbl, .edit-spec-detail-tbl {
+    height: 30px;
+    line-height: 30px;
+    width: 730px;
+    margin: 0 0 5px 0 ;
+    padding: 0;
+}
+
+.spec-detail-tbl {
+    height: 30px;
+    line-height: 30px;
+    width: 420px;
+    margin: 0 0 5px 0 ;
+    padding: 0;
+}
+
+.sd-hdr {
+    text-align: center;
+    border: 1px solid #aaaaaa;
+    background-color: #d0d0ff;
+    margin-top: 1px;
+}
+
+hr {
+    margin-top: 0;
+    border: 2px solid #888888;
+}
+
+.invisible-hr {
+    border: 0 solid #ffffff;
+}
+
+.hdr-sd-brand-name, .sd-brand-name {
+    width: 645px;
+    margin: 0;
+}
+
+.hdr-sd-price, .sd-price {
+    width: 94px;
+    margin: 0;
+}
+
+.hdr-sd-currency-name, .sd-currency-name {
+    width: 54px;
+    margin: 0;
+}
+
+.hdr-sd-quantity, .sd-quantity {
+    width: 70px;
+    margin: 0;
+}
+
+.hdr-sd-unit-name, .sd-unit-name {
+    width: 53px;
+    margin: 0;
+}
+
+.hdr-sd-tax-type, .sd-tax-type {
+    width: 56px;
+    margin: 0;
+}
+
+.hdr-sd-tax-rate, .sd-tax-rate {
+    width: 56px;
+    margin: 0;
+}
+
+.hdr-sd-tax-header, .sd-tax-header {
+    width: 79px;
+    margin: 0;
+}
+
+.hdr-sd-tax, .sd-tax {
+    width: 80px;
+    margin: 0;
+}
+
+.hdr-sd-subtotal {
+    width: 156px;
+    margin: 0;
+}
+
+.sd-subtotal {
+    width: 153px;
+    margin: 0;
+}
+
+.hdr-sd-spec-memo, .sd-spec-memo {
+    width: 645px;
+    margin: 0;
+}
+
+.save {
+    writing-mode: vertical-rl;
+    width: 36px;
+    height: 72px;
+    margin-top: 2px;
+    margin-left: 12px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+
+.delete-btn {
+    writing-mode: vertical-rl;
+    text-align: center;
+    width: 36px;
+    height: 106px;
+    padding: 0;
+    margin-top: 16px;
+    margin-left: 2px;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.to-edit-spec-detail-button {
+    writing-mode: vertical-rl;
+    text-align: center;
+    width: 36px;
+    height: 106px;
+    padding: 0;
+    margin-top: 16px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.sdc-hdr, .sde-hdr {
+    width: 60px;
+    margin-top: 1px;
+}
+
+.sdc-brand-name, .sde-brand-name {
+    width: 330px;
+    margin: 0;
+}
+
+.sdc-price, .sde-price {
+    width: 94px;
+    margin: 0;
+}
+
+.sdc-currency-name, .sde-currency-name {
+    width: 54px;
+    margin: 0;
+}
+
+.sdc-quantity, .sde-quantity {
+    width: 70px;
+    margin: 0;
+}
+
+.sdc-unit-name, .sde-unit-name {
+    width: 53px;
+    margin: 0;
+}
+
+.sdc-tax-type, .sde-tax-type {
+    width: 56px;
+    margin: 0;
+}
+
+.sdc-tax-rate, .sde-tax-rate {
+    width: 56px;
+    margin: 0;
+}
+
+.sdc-tax, .sde-tax {
+    width: 80px;
+    margin: 0;
+}
+
+.sdc-subtotal, .sde-subtotal {
+    width: 124px;
+    margin: 0;
+}
+
+.sdc-spec-memo, .sde-spec-memo {
+    width: 330px;
+    margin: 0;
+}
+
+.footer-sdc-btn {
+    width: 420px;
+    min-width: 420px;
+    max-width: 420px;
+}
+
+.footer-sdc-btn > button {
+    width: 100%;
+}
+
+.footer-sde-btn {
+    width: 420px;
+    min-width: 420px;
+    max-width: 420px;
+}
+
+.footer-sde-btn > button {
+    margin: 0;
+    width: 100%;
+}
+
+.to-create-spec-detail {
+    width: 100%;
+}

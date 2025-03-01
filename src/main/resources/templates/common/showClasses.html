@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="jp"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="費目一覧"></title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/classifications.css" rel="stylesheet">
+</head>
+<body>
+<div class="top-container">
+    <h3>区分</h3>
+    <form id="classifications" method="GET">
+        <table>
+            <thead>
+            <tr>
+                <!-- firstClassSelect -->
+                <th class="firstClass">
+                    <span><label aria-label="Income and Expenditure" for="firstClassSelect">収入支出</label></span>
+                    <span class="require">*</span>
+                </th>
+                <!-- secondClassSelect -->
+                <th class="secondClass">
+                    <span><label aria-label="Major expense category" for="secondClassSelect">費目大分類</label></span>
+                    <span class="require">*</span>
+                </th>
+                <!-- thirdClassSelect -->
+                <th class="thirdClass">
+                    <span><label aria-label="Minor expense category" for="thirdClassSelect">費目小分類</label></span>
+                    <span class="require">*</span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <!-- firstClassSelect -->
+                <td>
+                    <span>
+                        <select class="firstClassSelect" id="firstClassSelect"
+                                name="firstClassSelect">
+                        </select>
+                        <label for="firstClassJson">
+                            <input id="firstClassJson" th:value="${firstClasses}" type="hidden"/>
+                        </label>
+                    </span>
+                </td>
+                <!-- secondClassSelect -->
+                <td class="secondClass">
+                    <span>
+                        <select class="secondClassSelect" id="secondClassSelect"
+                                name="secondClassSelect">
+                        </select>
+                        <label for="secondClassJson">
+                            <input id="secondClassJson" th:value="${secondClasses}" type="hidden"/>
+                        </label>
+                    </span>
+                </td>
+                <!-- thirdClassSelect -->
+                <td class="thirdClass">
+                    <span>
+                        <select class="thirdClassSelect" id="thirdClassSelect"
+                                name="thirdClassSelect">
+                        </select>
+                        <label for="thirdClassJson">
+                            <input id="thirdClassJson" th:value="${thirdClasses}" type="hidden"/>
+                        </label>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="margin-tbl">
+            <tr>
+                <td class="info">
+                    <span>*) 必須項目</span>
+                </td>
+            </tr>
+        </table>
+
+        <script src="/js/classifications.js"></script>
+    </form>
+    <div class="footer-btn">
+        <div id="toTopMenuButton"></div>
+    </div>
+    <script th:src="@{/js/common/toTopMenuButton.js}"></script>
+</div>
+</body>
+</html>
