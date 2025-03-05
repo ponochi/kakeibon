@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>明細登録</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" rel="stylesheet">
+    <link href="/css/specDetail.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid top-sdc-container">
+    <h3>明細登録</h3>
+
+    <form id="commit"
+          th:action="@{'/spec/save/create/detail/__*{specificationGroupId}__/__${specificationGroupForm.userId}__/__${specificationGroupForm.accountAndBalanceId}__/__${specificationGroupForm.shopId}__/__${specificationGroupForm.balanceTypeId}__/__${accountSourceForm.accountSourceId}__/__${accountDestinationForm.accountDestinationId}__'}"
+          th:object="${specificationForm}" method="POST">
+        <div>
+            <input id="specificationGroupId" name="specificationGroupId" th:field="*{specificationGroupId}"
+                   type="hidden"/>
+            <input id="specificationId" name="specificationId" th:field="*{specificationId}" type="hidden"/>
+            <div th:object="${specificationGroupForm}">
+                <input id="userId" name="userId"
+                       th:field="*{userId}" type="hidden"/>
+                <input id="receivingAndPaymentDate"
+                       name="receivingAndPaymentDate"
+                       th:value="${specificationGroupForm.receivingAndPaymentDate}"
+                       type="hidden"/>
+                <input id="receivingAndPaymentTime"
+                       name="receivingAndPaymentTime"
+                       th:value="${specificationGroupForm.receivingAndPaymentTime}"
+                       type="hidden"/>
+                <input id="accountAndBalanceId" name="accountAndBalanceId"
+                       th:field="*{accountAndBalanceId}" type="hidden"/>
+                <input id="shopId" name="shopId"
+                       th:field="*{shopId}" type="hidden"/>
+                <input id="balanceTypeId" name="balanceTypeId"
+                       th:field="*{balanceTypeId}" type="hidden"/>
+                <input id="groupMemo" name="groupMemo"
+                       th:field="*{groupMemo}" type="hidden"/>
+            </div>
+            <div th:object="${accountAndBalanceForm}">
+                <input id="accountSourceId" name="accountSourceId"
+                       th:field="*{accountSourceId}" type="hidden"/>
+                <input id="accountDestinationId" name="accountDestinationId"
+                       th:field="*{accountDestinationId}" type="hidden"/>
+            </div>
+        </div>
+        <table class="spec-detail-tbl">
+            <tr>
+                <th>
+                    <label class="sdc-hdr hdr-sdc-brand-name">商品名</label>
+                </th>
+                <td>
+                    <label>
+                        <input id="brandName" class="sdc-brand-name"
+                               th:field="*{brandName}" type="text"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label class="sdc-hdr hdr-sdc-price">単価</label>
+                </th>
+                <td>
+                    <label>
+                        <!--              <input id="price" class="sdc-price" onchange="calculateTax()"-->
+                        <!--                     th:field="*{price}" type="number"/>-->
+                        <input id="price" th:field="*{price}" type="number"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label class="sdc-hdr hdr-sdc-currency-name">通貨</label>
+                </th>
+                <td>
+                    <label>
+                        <!--              <select id="currencyId" class="sdc-currency-name"-->
+                        <!--                      onchange="calculateTax()" th:field="*{currencyId}">-->
+                        <select id="currencyId" th:field="*{currencyId}">
+                            <option th:each="currencyList : ${currencyLists}"
+                                    th:label="${currencyList.currencyName}"
+                                    th:value="${currencyList.currencyId}">
+                            </option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label class="sdc-hdr hdr-sdc-quantity">数量</label>
+                </th>
+                <td>
+                    <label>
+                        <!--              <input id="quantity" class="sdc-quantity"-->
+                        <!--                     onchange="calculateTax()" th:field="*{quantity}" type="number"/>-->
+                        <input id="quantity" th:field="*{quantity}" type="number"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label class="sdc-hdr hdr-sdc-unit-name">単位</label>
+                </th>
+                <td>
+                    <label>
+                        <!--              <select class="sdc-unit-name" th:field="*{unitId}">-->
+                        <select id="unitId" th:field="*{unitId}">
+                            <option th:each="unit : ${units}"
+                                    th:label="${unit.unitName}"
+                                    th:value="${unit.unitId}">
+                            </option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label class="sdc-hdr hdr-sdc-tax-type">税区分</label>
+                </th>
+                <td>
+                    <label>
+                        <!--              <select id="taxTypeId" name="taxTypeId"-->
+                        <!--                      class="sdc-tax-type"-->
+                        <!--                      onchange="calculateTax()"-->
+                        <!--                      th:value="*{taxTypeId}">-->
+                        <select id="taxTypeId" th:field="*{taxTypeId}">
+                            <option th:each="taxType : ${taxTypes}"
+                                    th:label="${taxType.taxTypeName}"
+                                    th:value="${taxType.taxTypeId}">
+                            </option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label class="sdc-hdr hdr-sdc-tax-rate">税率</label>
+                </th>
+                <td>
+                    <label>
+                        <!--              <select id="taxRateId" class="sdc-tax-rate"-->
+                        <!--                      onchange="calculateTax()" th:field="*{taxRateId}">-->
+                        <select id="taxRateId" th:field="*{taxRateId}">
+                            <option th:each="taxRate : ${taxRates}"
+                                    th:text="'__${taxRate.taxRate}__' + '%'"
+                                    th:value="${taxRate.taxRateId}">
+                            </option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label class="sdc-hdr hdr-sdc-tax">消費税</label>
+                </th>
+                <td>
+                    <label>
+                        <input class="sdc-tax" th:field="*{tax}" type="number"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label class="sdc-hdr hdr-sdc-spec-memo">備考</label>
+                </th>
+                <td>
+                    <label>
+              <textarea class="sdc-spec-memo"
+                        th:field="*{specMemo}" cols="31" rows="2"></textarea>
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div class="footer-sdc-btn">
+        <div id="commitButton"></div>
+        <div id="cancelBySpecDetailButton"></div>
+        <div id="toTopMenuButton"></div>
+    </div>
+
+    <div th:object="${specificationGroupForm}">
+        <input th:value="*{balanceTypeId}" type="hidden"/>
+    </div>
+</div>
+
+<form id="cancel"
+      th:action="@{'/spec/save/edit/detail/__*{specificationGroupId}__/__${specificationForm.specificationId}__/__*{userId}__/__${specificationGroupForm.accountAndBalanceId}__/__${specificationGroupForm.shopId}__/__${specificationGroupForm.balanceTypeId}__/__${accountSourceForm.accountSourceId}__/__${accountDestinationForm.accountDestinationId}__/__${receivingAndPaymentDate}__/__${receivingAndPaymentTime}__?groupMemo=__${groupMemo}__'}"
+      th:object="${specificationForm}" method="POST"></form>
+
+<script th:src="@{/js/common/commitButton.js}"></script>
+<script th:src="@{/js/common/cancelBySpecDetailButton.js}"></script>
+<script th:src="@{/js/common/toTopMenuButton.js}"></script>
+
+<script src="/js/specification.js"></script>
+<script src="/js/cancelBySpecDetail.js"></script>
+</body>
+</html>

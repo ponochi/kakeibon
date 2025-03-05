@@ -1,0 +1,167 @@
+.top-ul-container {
+    margin: 10px auto;
+    width: 555px;
+}
+
+/*border: 2px solid #000000;*/
+
+.top-uc-container, .top-ue-container {
+    margin: 10px auto;
+    width: 400px;
+}
+
+.top-us-container {
+    margin: 10px auto;
+    width: 405px;
+}
+
+.user-info-tbl {
+    table-layout: fixed;
+    width: 525px;
+    min-width: 525px;
+    max-width: 525px;
+    border-collapse: collapse;
+    border: 2px solid #888888;
+}
+
+.tbl-header {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.user-info-tbl-row:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.user-info-tbl-row:nth-child(even) {
+    background-color: #fee7e7;
+}
+
+.user-info-tbl, .user-id {
+    width: 80px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.user-info-tbl, .user-name {
+    min-width: 300px;
+    word-wrap: break-word;
+}
+
+.user-info-tbl, .role-name {
+    width: 70px;
+}
+
+.user-info-tbl, .user-control {
+    width: 75px;
+}
+
+.to-create-user, .to-users-list, .to-edit-user {
+    width: 100%;
+}
+
+.create-user-tbl, .margin-tbl {
+    width: 52%;
+    min-width: 400px;
+    max-width: 400px;
+    table-layout: fixed;
+    height: auto;
+    /*line-height: 30px;*/
+}
+
+/*.create-user-tbl {*/
+/*    height: auto;*/
+/*}*/
+
+.create-user-tbl th, .td-container, .require, .non-require, .readonly-fields .input-fields, .birth-day, .role-name {
+    /*height: auto;*/
+    /*line-height: auto;*/
+    /*margin-bottom: 10px;*/
+}
+
+.require, .non-require {
+    text-align: center;
+    width: 20px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.require, .info {
+    color: red;
+    font-size: 14px;
+}
+
+.info {
+    text-align: end;
+}
+
+.create-user-tbl th {
+    width: 90px;
+}
+
+.create-user-tbl, .readonly-fields, .input-fields, .birth-day {
+    width: 280px;
+}
+
+
+.create-user-tbl, .year-select {
+    width: 70px;
+    margin-left: 0;
+}
+
+.create-user-tbl, .month-select, .date-select {
+    width: 50px;
+}
+
+.margin-tbl, .info {
+    text-align: right;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    min-width: 400px;
+    max-width: 400px;
+}
+
+.margin-tbl, .margin {
+    font-size: 5px;
+}
+
+.footer-ul-btn {
+    width: 525px;
+    min-width: 525px;
+    max-width: 525px;
+}
+
+.footer-ul-btn > button {
+    width: 525px;
+}
+
+.footer-btn {
+    width: 52%;
+    min-width: 390px;
+    max-width: 390px;
+}
+
+.footer-btn > button {
+    width: 100%;
+}
+
+.user-details-tbl, th {
+    width: 90px;
+}
+
+.user-details-tbl, td {
+    word-wrap: break-word;
+    width: auto;
+}
+
+.footer-us-btn {
+    width: 405px;
+    min-width: 405px;
+    max-width: 405px;
+}
+
+.footer-us-btn > button {
+    width: 100%;
+}

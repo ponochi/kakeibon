@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>入出金登録</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/specGroup.css" rel="stylesheet">
+    <link href="/css/specDetail.css" rel="stylesheet">
+    <link href="/css/specShowList.css" rel="stylesheet">
+    <script src="/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container-fluid top-sge-container">
+    <h3>入出金登録</h3>
+    <form id="commit"
+          th:action="@{'/spec/update/group/__*{specificationGroupId}__/__*{userId}__'}"
+          th:object="${specificationGroupForm}" method="POST">
+        <div>
+            <input id="specificationGroupId" name="specificationGroupId"
+                   th:value="*{specificationGroupId}" type="hidden">
+            <input id="accountAndBalanceId" name="accountAndBalanceId"
+                   th:value="*{accountAndBalanceId}" type="hidden">
+            <input id="userId" name="userId"
+                   th:value="*{userId}" type="hidden">
+        </div>
+
+        <table class="edit-spec-grp-tbl">
+            <tr>
+                <td class="hdr-sg-rcv-and-payment-dt"><label>入出金日時</label></td>
+                <td>
+                    <label>
+                        <input id="receivingAndPaymentDate"
+                               name="receivingAndPaymentDate"
+                               class="sg-rcv-and-payment-date"
+                               th:value="${specificationGroupForm.receivingAndPaymentDate}"
+                               type="date">
+                    </label>
+                    <label>
+                        <input id="receivingAndPaymentTime"
+                               name="receivingAndPaymentTime"
+                               class="sg-rcv-and-payment-time"
+                               th:value="${specificationGroupForm.receivingAndPaymentTime}"
+                               type="time">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr-sg-shop"><label>お店</label></td>
+                <td th:object="${specificationGroupForm.shopForm}">
+                    <th:block th:if="*{shopId ne null}">
+                        <input id="shopId" name="shopId"
+                               readonly th:value="*{shopId}" type="hidden"/>
+                        <label>
+                            <!--              <label for="shop"></label>-->
+                            <input id="shop" name="shop" class="sge-shop"
+                                   readonly th:value="${shopForm.shopName}" type="text"/>
+                        </label>
+                    </th:block>
+                    <th:block th:unless="${specificationGroupForm.shopId ne null}">
+                        <input id="shopId" name="shopId"
+                               readonly th:value="1" type="hidden">
+                        <input id="shop" name="shop" class="sge-shop"
+                               readonly type="text">
+                    </th:block>
+                    <button id="shopButton" name="shopButton">検&nbsp;索</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr-sg-balance-type"><label>入出金区分</label></td>
+                <td>
+                    <label>
+                        <select id="balanceTypeId" name="balanceTypeId"
+                                class="sg-balance-type" th:value="${selectedBalanceTypeId}">
+                            <option th:value="0">選択してください</option>
+                            <option th:each="balanceType : ${balanceTypes}"
+                                    th:label="${balanceType.balanceTypeName}"
+                                    th:selected="${selectedBalanceTypeId} == ${balanceType.balanceTypeId}"
+                                    th:value="${balanceType.balanceTypeId}">
+                            </option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr-sg-account-src-name"><label>出金元</label></td>
+                <td th:object="${specificationGroupForm.accountAndBalanceForm}">
+                    <th:block th:if="*{accountSourceId ne null}">
+                        <input id="accountSourceId" name="accountSourceId"
+                               readonly th:value="*{accountSourceId}" type="hidden">
+                        <label>
+                            <input id="accountSourceName" name="accountSourceName"
+                                   class="sg-account-src-name"
+                                   th:value="${accountSourceForm.accountName}"
+                                   readonly type="text"/>
+                        </label>
+                    </th:block>
+                    <th:block
+                            th:unless="${specificationGroupForm.accountAndBalanceForm.accountSourceId ne null}">
+                        <input id="accountSourceId" name="accountSourceId"
+                               th:value="1" type="hidden" readonly>
+                        <input id="accountSourceName" name="accountSourceName"
+                               class="sg-account-src-name"
+                               type="text" readonly>
+                    </th:block>
+                    <button id="accountSourceButton" name="accountSourceButton">検&nbsp;索</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr-sg-account-dest-name"><label>入金先</label></td>
+                <td th:object="${specificationGroupForm.accountAndBalanceForm}">
+                    <th:block
+                            th:if="*{accountDestinationId ne null}">
+                        <input id="accountDestinationId" name="accountDestinationId"
+                               readonly th:value="*{accountDestinationId}" type="hidden"/>
+                        <label>
+                            <input id="accountDestinationName" name="accountDestinationName"
+                                   class="sg-account-dest-name"
+                                   th:value="${accountDestinationForm.accountName}"
+                                   type="text" readonly>
+                        </label>
+                    </th:block>
+                    <th:block
+                            th:unless="${specificationGroupForm.accountAndBalanceForm.accountDestinationId ne null}">
+                        <input id="accountDestinationId" name="accountDestinationId"
+                               readonly th:value="1" type="hidden">
+                        <input id="accountDestinationName" name="accountDestinationName"
+                               class="sg-account-dest-name"
+                               type="text" readonly>
+                    </th:block>
+                    <button id="accountDestinationButton" name="accountDestinationButton">検&nbsp;索</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr-sg-total-amount"><label>合計</label></td>
+                <td>
+                    <label>
+                        <input id="totalAmount" name="totalAmount"
+                               class="sg-total-amount"
+                               th:value="${totalAmount}" readonly>
+                    </label>
+                    円
+                </td>
+            </tr>
+            <tr>
+                <td class="hdr-sg-grp-memo"><label>備考</label></td>
+                <td>
+                    <label>
+                        <textarea id="groupMemo" name="groupMemo" class="sg-grp-memo"
+                                  th:field="*{groupMemo}" cols="31" rows="2"></textarea>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <label>
+                        <input id="sg-deleted" name="sg-deleted"
+                               th:field="*{deleted}" type="hidden"/>
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div class="footer-btn">
+        <div id="commitButton"></div>
+        <div id="cancelByEditButton"></div>
+        <div id="toCreateSpecDetailButton"></div>
+        <div id="toSpecListButton"></div>
+        <div id="toTopMenuButton"></div>
+    </div>
+    <table class="edit-spec-detail-tbl">
+        <thead>
+        <tr>
+            <th>
+                <label class="sd-hdr hdr-sd-brand-name">商品名</label>
+                <label class="sd-hdr hdr-sd-price">単価</label>
+                <label class="sd-hdr hdr-sd-currency-name">通貨</label>
+                <label class="sd-hdr hdr-sd-quantity">数量</label>
+                <label class="sd-hdr hdr-sd-unit-name">単位</label>
+                <label class="sd-hdr hdr-sd-tax-type">税区分</label>
+                <label class="sd-hdr hdr-sd-tax-rate">税率</label>
+                <label class="sd-hdr hdr-sd-tax">消費税</label>
+                <label class="sd-hdr hdr-sd-subtotal">小計</label>
+                <label class="sd-hdr hdr-sd-spec-memo">備考</label>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="specificationForm : ${specificationForms}">
+            <td th:object="${specificationForm}">
+                <hr>
+                <label>
+                    <input id="brandName" name="brandName"
+                           class="sd-brand-name"
+                           th:value="*{brandName}" readonly/>
+                </label>
+                <label>
+                    <input id="price" name="price"
+                           class="sd-price"
+                           th:value="*{price}" readonly/>
+                </label>
+                <input id="currencyId" name="currencyId"
+                       th:value="*{currencyId}" type="hidden" readonly/>
+                <label>
+                    <input id="currencyName" name="currencyName"
+                           class="sd-currency-name"
+                           th:value="*{currencyListForm.currencyName}"
+                           type="text" readonly/>
+                </label>
+                <label>
+                    <input class="sd-quantity"
+                           th:value="*{quantity}" readonly/>
+                </label>
+                <input id="unitId" name="unitId"
+                       th:value="*{unitId}" type="hidden" readonly/>
+                <label>
+                    <input id="unitName" name="unitName"
+                           class="sd-unit-name"
+                           th:value="*{unitForm.unitName}"
+                           type="text" readonly>
+                </label>
+                <input id="taxTypeId" name="taxTypeId"
+                       th:value="*{taxTypeId}" type="hidden" readonly>
+                <label>
+                    <input id="taxTypeName" name="taxTypeName"
+                           class="sd-tax-type"
+                           th:value="*{taxTypeForm.taxTypeName}"
+                           type="text" readonly>
+                </label>
+                <input id="taxRateId" name="taxRateId"
+                       th:value="*{taxRateId}" type="hidden" readonly>
+                <label>
+                    <input id="taxRateName" name="taxRateName"
+                           class="sd-tax-rate"
+                           th:value="*{taxRateForm.taxRate}"
+                           type="text" readonly>
+                </label>
+                <label>
+                    <input class="sd-tax" readonly th:value="*{tax}"/>
+                </label>
+                <th:block th:if="${specificationForm.taxTypeId eq 1}">
+                    <label>
+                        <input class="sd-subtotal"
+                               th:value="${specificationForm.price}
+                             * ${specificationForm.quantity}
+                             + ${specificationForm.tax}"
+                               th:with="total=${total}
+                             + *{price}
+                             * *{quantity}
+                             + *{tax}"
+                               type="text" readonly/>
+                    </label>
+                </th:block>
+                <th:block th:unless="${specificationForm.taxTypeId eq 1}">
+                    <label>
+                        <input class="sd-subtotal"
+                               th:value="${specificationForm.price}
+                             * ${specificationForm.quantity}"
+                               th:with="total=${total}
+                             + *{price}
+                             * *{quantity}"
+                               type="text" readonly/>
+                    </label>
+                </th:block>
+                <label>
+                    <input class="sd-spec-memo"
+                           th:value="*{specMemo}" readonly/>
+                </label>
+                <input class="sd-deleted" th:value="*{deleted}"
+                       type="hidden" readonly/>
+            </td>
+            <td>
+                <hr class="invisible-hr">
+                <form th:id="'deleteDetail' + '__*{specificationId}__'"
+                      th:action="@{'/spec/delete/detail/__${specificationGroupForm.specificationGroupId}__/__${specificationForm.specificationId}__/__${specificationForm.userId}__/__${specificationGroupForm.accountAndBalanceId}__/__${specificationGroupForm.shopId}__/__${specificationGroupForm.balanceTypeId}__/__${accountSourceForm.accountSourceId}__/__${accountDestinationForm.accountDestinationId}__'}"
+                      th:object="${specificationForm}"
+                      method="POST">
+                    <input id="specificationId" name="specificationId"
+                           th:value="*{specificationId}"
+                           type="hidden">
+                    <input id="delete" name="delete"
+                           class="delete-btn"
+                           th:form="'deleteDetail' + '__*{specificationId}__'"
+                           type="submit" value="削&nbsp;&nbsp;&nbsp;除">
+                </form>
+            </td>
+            <td>
+                <hr class="invisible-hr">
+                <form th:action="@{'/spec/edit/detail/__${specificationGroupForm.specificationGroupId}__/__*{specificationId}__/__*{userId}__/__${specificationGroupForm.accountAndBalanceId}__/__${specificationGroupForm.shopId}__/__${specificationGroupForm.balanceTypeId}__/__${accountSourceForm.accountSourceId}__/__${accountDestinationForm.accountDestinationId}__'}"
+                      th:id="'specDetail' + '__*{specificationId}__'"
+                      th:object="${specificationForm}" method="POST">
+                    <button id="toEditSpecDetailButton" name="toEditSpecDetailButton"
+                            class="to-edit-spec-detail-button">編&nbsp;&nbsp;&nbsp;集
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:object="${specificationGroupForm}">
+        <input id="balanceTypeIdInput" name="balanceTypeIdInput"
+               th:value="*{balanceTypeId}" type="hidden">
+
+        <th:block th:if="${specificationGroupForm.groupMemo ne null}">
+            <form id="createSpecDetail"
+                  method="POST"
+                  th:action="@{'/spec/create/detail/__*{specificationGroupId}__/__*{userId}__/__*{accountAndBalanceId}__/__*{shopId}__/__*{balanceTypeId}__/__${accountSourceForm.accountSourceId}__/__${accountDestinationForm.accountDestinationId}__?groupMemo=__*{groupMemo}__'}">
+            </form>
+        </th:block>
+        <th:block th:unless="${specificationGroupForm.groupMemo ne null}">
+            <form id="createSpecDetail"
+                  method="POST"
+                  th:action="@{'/spec/create/detail/__*{specificationGroupId}__/__*{userId}__/__*{accountAndBalanceId}__/__*{shopId}__/__*{balanceTypeId}__/__${accountSourceForm.accountSourceId}__/__${accountDestinationForm.accountDestinationId}__?groupMemo='}">
+            </form>
+        </th:block>
+        <form id="searchShop"
+              th:action="@{'/__*{specificationGroupId}__/__*{userId}__/__*{accountAndBalanceId}__/__*{shopId}__/__*{balanceTypeId}__/__${accountSourceForm.accountSourceId}__/__${accountDestinationForm.accountDestinationId}__/__*{receivingAndPaymentDate}__/__*{receivingAndPaymentTime}__/searchShop'}"
+              method="POST">
+        </form>
+        <form id="searchAccountSource"
+              method="GET"
+              th:action="@{'/__*{specificationGroupId}__/__*{userId}__/__*{accountAndBalanceId}__/__*{shopId}__/__*{balanceTypeId}__/__${accountSourceForm.accountSourceId}__/__${accountDestinationForm.accountDestinationId}__/__*{receivingAndPaymentDate}__/__*{receivingAndPaymentTime}__/searchAccountSource'}">
+        </form>
+        <form id="searchAccountDestination"
+              method="GET"
+              th:action="@{'/__*{specificationGroupId}__/__*{userId}__/__*{accountAndBalanceId}__/__*{shopId}__/__*{balanceTypeId}__/__${accountSourceForm.accountSourceId}__/__${accountDestinationForm.accountDestinationId}__/__*{receivingAndPaymentDate}__/__*{receivingAndPaymentTime}__/searchAccountDestination'}">
+        </form>
+        <form id="list" th:action="@{'/spec'}"
+              method="GET" th:object="${specificationGroupForms}">
+        </form>
+        <form id="top" th:action="@{'/top'}" method="GET">
+        </form>
+    </div>
+</div>
+
+<script th:src="@{/js/common/commitButton.js}"></script>
+<script th:src="@{/js/common/cancelByEditSpecGroupButton.js}"></script>
+<script th:src="@{/js/common/toCreateSpecDetailButton.js}"></script>
+<script th:src="@{/js/common/toSpecListButton.js}"></script>
+<script th:src="@{/js/common/toTopMenuButton.js}"></script>
+
+<script src="/js/specification.js"></script>
+<script src="/js/cancelByEditSpecGroup.js"></script>
+<script src="/js/transitSpec.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+.top-container {
+    margin: 10px auto;
+    width: 550px;
+}
+
+.footer-btn {
+    width: 550px;
+    min-width: 550px;
+    max-width: 550px;
+}
+
+.footer-btn > button {
+    width: 100%;
+}
+
+.firstClass {
+    width: 85px;
+}
+
+.secondClass {
+    width: 130px;
+}
+
+.thirdClass {
+    width: 300px;
+}
+
+.require {
+    text-align: center;
+    width: 20px;
+}
+
+.firstClassSelect {
+    width: 100px;
+}
+
+.secondClassSelect {
+    width: 140px;
+}
+
+.thirdClassSelect {
+    width: 300px;
+}
+
+.margin-tbl {
+    width: 550px;
+    min-width: 550px;
+    max-width: 550px;
+    table-layout: fixed;
+}
+
+.require, .info {
+    color: red;
+}
+
+.info {
+    text-align: end;
+}

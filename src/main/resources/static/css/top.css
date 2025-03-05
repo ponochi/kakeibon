@@ -1,0 +1,11 @@
+.logo {
+    display: block;
+    text-align: end;
+    min-width: min-content;
+    max-width: max-content;
+}
+
+.btn-margin {
+    display: flex;
+    margin: 10px;
+}
